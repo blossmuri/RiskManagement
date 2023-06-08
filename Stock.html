@@ -1,0 +1,64 @@
+<!<!DOCTYPE html>
+<html>
+<head>
+    <title>股票购买建议计算器</title>
+    <style>
+        /* 添加一些基本的样式 */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        
+        input[type="number"] {
+            padding: 5px;
+            width: 200px;
+        }
+        
+        button {
+            padding: 10px 20px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>股票购买建议计算器</h1>
+    
+    <label for="current-price">当前股价：</label>
+    <input type="number" id="current-price">
+    
+    <label for="stop-loss">停损价格：</label>
+    <input type="number" id="stop-loss">
+    
+    <label for="current-assets">现有资产：</label>
+    <input type="number" id="current-assets">
+    
+    <label for="max-loss-percentage">最大接受亏损（%）：</label>
+    <input type="number" id="max-loss-percentage">
+    
+    <button onclick="calculate()">计算</button>
+    
+    <h2>建议购买股数：</h2>
+    <div id="result"></div>
+    
+    <script>
+        function calculate() {
+            // 获取用户输入的值
+            var currentPrice = parseFloat(document.getElementById("current-price").value);
+            var stopLoss = parseFloat(document.getElementById("stop-loss").value);
+            var currentAssets = parseFloat(document.getElementById("current-assets").value);
+            var maxLossPercentage = parseFloat(document.getElementById("max-loss-percentage").value);
+            
+            // 进行计算
+            var sharesToBuy = (currentAssets * maxLossPercentage * 0.01) / (currentPrice - stopLoss);
+            
+            // 显示结果
+            document.getElementById("result").textContent = sharesToBuy.toFixed(2) + " 股";
+        }
+    </script>
+</body>
+</html>
